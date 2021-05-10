@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-typescript-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "watch": "npx tsc -w",
+    "dev": "npx nodemon dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mowafag-omer/nodejs-typescript-starter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mowafag-omer/nodejs-typescript-starter/issues"
+  },
+  "homepage": "https://github.com/mowafag-omer/nodejs-typescript-starter#readme",
+  "devDependencies": {
+    "@types/node": "^15.0.2",
+    "typescript": "^4.2.4"
+  }
+}
