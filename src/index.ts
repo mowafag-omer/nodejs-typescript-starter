@@ -1,1 +1,3 @@
-console.log('yuupS');
+import { createServer } from './app/http/app'
+
+createServer();
