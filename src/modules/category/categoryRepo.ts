@@ -1,3 +1,5 @@
+import { categoryProps } from './categoryTypes'
+
 export class CategoryRepo {
     private entities: any
 
@@ -6,8 +8,14 @@ export class CategoryRepo {
         this.entities = entities
     }
 
-    public async getCategories() {
+    // public async getCategories(props) {
+    //     const CategoryEntity = this.entities.Category
+    //     return await CategoryEntity.create();
+    // }
+
+    public async create(categoryProps: categoryProps) {
         const CategoryEntity = this.entities.Category
-        return await CategoryEntity.createAndSave({name: 'create a database'})
+
+        return await CategoryEntity.create({ name: categoryProps.name, description: categoryProps.description }).save()
     }
 }
