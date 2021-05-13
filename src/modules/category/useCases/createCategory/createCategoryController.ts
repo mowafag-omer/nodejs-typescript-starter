@@ -10,12 +10,12 @@ export class CreateCategoryController {
   }
 
   public async execute(req: Request, res: Response) {
-    const { name, description } = req.body
+    const { name, description } = req.body;
     
     if (!name) {
       return res.status(400).json({
         error: {
-          message: "Name is required"
+          message: "Name is required",
         },
       });
     }
@@ -23,14 +23,18 @@ export class CreateCategoryController {
     if (!description) {
       return res.status(400).json({
         error: {
-          message: "Description is required"
-        }
+          message: "Description is required",
+        },
       });
     }
 
-    const categories = await this.useCase.execute(req.body)
-    console.log("Controller categories result", categories)
+    try {
+      const categories = await this.useCase.execute(req.body);
 
-    return res.status(200).json(categories)
+      return res.status(200).json(categories);
+
+    } catch (error) {
+      return res.status(400).json(error.message)
+    }
   }
 }

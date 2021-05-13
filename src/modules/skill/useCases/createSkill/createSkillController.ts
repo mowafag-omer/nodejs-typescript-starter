@@ -10,34 +10,26 @@ export class CreateSkillController {
   }
 
   public async execute(req: Request, res: Response) {
-    const { name, description, categoryId } = req.body
-    
-    if (!name) {
-      return res.status(400).json({
-        error: {
-          message: "Name is required"
-        },
-      });
+    const { name, description, categoryId } = req.body;
+
+    Object.values({ name, description, categoryId })
+      .forEach((elm: string | number, index): any => {
+      if (!elm) {
+        return res.status(400).json({
+          error: {
+            message: `${Object.keys({ name, description, categoryId })[index]} is required`
+          }
+        })
+      }
+    })
+
+    try {
+      const skill = await this.useCase.execute(req.body);
+
+      return res.status(200).json(skill);
+
+    } catch (error) {
+      return res.status(400).json(error.message)
     }
-
-    if (!description) {
-      return res.status(400).json({
-        error: {
-          message: "Description is required"
-        }
-      });
-    }
-
-    if (!categoryId) {
-      return res.status(400).json({
-        error: {
-          message: "category id is required"
-        }
-      });
-    }
-
-    const skill = await this.useCase.execute(req.body)
-
-    return res.status(200).json(skill)
   }
 }

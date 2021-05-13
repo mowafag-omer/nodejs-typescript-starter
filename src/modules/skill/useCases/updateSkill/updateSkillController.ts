@@ -12,35 +12,19 @@ export class UpdateSkillController {
     // We get the body
     const id: number = +req.params.id;
     const { name, description, categoryId } = req.body
-    console.log(req.body);
 
     // If the body is not valid, we return a 400
-    if (!name) {
-      return res.status(400).json({
-        error: {
-          message: "Name is required",
-        },
-      });
-    }
-
-    if (!description) {
-      return res.status(400).json({
-        error: {
-          message: "Description is required",
-        },
-      });
-    }
-
-    if (!categoryId) {
-      return res.status(400).json({
-        error: {
-          message: "category id is required"
-        }
-      });
-    }
-
+    Object.values({ name, description, categoryId })
+      .forEach((elm: string | number, index): any => {
+      if (!elm) {
+        return res.status(400).json({
+          error: {
+            message: `${Object.keys({ name, description, categoryId })[index]} is required`
+          }
+        })
+      }
+    })
     
-
     try {
       const skill = await this.useCase.execute(id, req.body);
   
