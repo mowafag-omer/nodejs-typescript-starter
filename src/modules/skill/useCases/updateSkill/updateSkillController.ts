@@ -15,7 +15,7 @@ export class UpdateSkillController {
 
     // If the body is not valid, we return a 400
     Object.values({ name, description, categoryId })
-      .forEach((elm: string | number, index): any => {
+      .forEach((elm, index): any => {
       if (!elm) {
         return res.status(400).json({
           error: {
