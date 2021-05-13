@@ -8,6 +8,9 @@ export class Skill extends BaseEntity {
 
   @Column()
   name: string;
+  
+  @Column()
+  description: string;
 
   @ManyToOne(() => Category, (category) => category.skills)
   category: Category;

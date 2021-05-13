@@ -25,18 +25,18 @@ export class CategoryRepo {
 
   public async get(id: number) {
     const CategoryEntity = this.entities.Category;
-
-    return await CategoryEntity.findOne({id: id});
+    
+    return await CategoryEntity.findOne({id});
   }
 
   public async update(id: number, categoryProps: categoryProps) {
     const CategoryEntity = this.entities.Category;
-    // const categoryToUpdate = await CategoryEntity.findOne({id: id});
+    const categoryToUpdate = await CategoryEntity.findOne({id});
 
-    // categoryToUpdate.name= categoryProps.name
-    // categoryToUpdate.description= categoryProps.description
+    categoryToUpdate.name= categoryProps.name
+    categoryToUpdate.description= categoryProps.description
     
-    return await CategoryEntity.save({id, ...categoryProps});
+    return await CategoryEntity.save(categoryToUpdate);
   }
 
   public async delete(id: number) {

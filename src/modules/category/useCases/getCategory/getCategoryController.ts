@@ -10,9 +10,17 @@ export class GetCategoryController {
 
   public async execute(req: Request, res: Response) {
     const id: number = +req.params.id 
-    const category = await this.useCase.execute(id)
-    console.log("Controller category result", category)
+   
+    try {
+      const category = await this.useCase.execute(id)
 
-    return res.status(200).json(category)
+      typeof category === "undefined" &&
+        res.status(404).json("This category doesn't existe !")
+
+      return res.status(200).json(category)
+    } 
+    catch (error) {
+      return res.status(400).json(error.message)
+    }
   }
 }

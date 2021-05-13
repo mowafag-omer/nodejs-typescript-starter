@@ -9,13 +9,11 @@ export class UpdateCategoryController {
   }
 
   public async execute(req: Request, res: Response) {
-    // We get the body
     const id: number = +req.params.id;
     const { name, description } = req.body;
     console.log(req.body);
 
 
-    // If the body is not valid, we return a 400
     if (!name) {
       return res.status(400).json({
         error: {
