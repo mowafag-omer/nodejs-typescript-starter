@@ -4,7 +4,7 @@ import { CreateCategory } from './createCategory'
 import { CreateCategoryController } from './createCategoryController'
 
 
-//Je construit mon repo avec les entités dont j'ai besoin
+// I build my repo with the entities I need
 const categoryRepo = new CategoryRepo(entitiesObject)
 const createCategory = new CreateCategory(categoryRepo)
 const createCategoryController = new CreateCategoryController(createCategory)

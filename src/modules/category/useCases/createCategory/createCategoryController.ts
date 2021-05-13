@@ -10,11 +10,11 @@ export class CreateCategoryController {
   }
 
   public async execute(req: Request, res: Response) {
-    //On récupère le body
+   // We get the body
     const { name, description } = req.body
     console.log(req.body);
     
-    //Si le body est pas valide, on renvoie une 400
+    // If the body is not valid, we return a 400
     if (!name) {
       return res.status(400).json({
         error: {
