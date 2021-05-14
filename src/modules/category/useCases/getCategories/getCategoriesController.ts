@@ -10,7 +10,6 @@ export class GetCategoriesController {
 
   public async execute(_: Request, res: Response) {
     const categories = await this.useCase.execute()
-    console.log("Controller categories result", categories)
 
     return res.status(200).json(categories)
   }

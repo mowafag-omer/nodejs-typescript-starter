@@ -14,12 +14,11 @@ export class UpdateSkillController {
     const { name, description, categoryId } = req.body
 
     // If the body is not valid, we return a 400
-    Object.values({ name, description, categoryId })
-      .forEach((elm, index): any => {
+    Object.values({name, description, categoryId}).forEach((elm, index): any => {
       if (!elm) {
         return res.status(400).json({
           error: {
-            message: `${Object.keys({ name, description, categoryId })[index]} is required`
+            message: `${Object.keys({name, description, categoryId})[index]} is required`
           }
         })
       }

@@ -12,5 +12,5 @@ export class User extends BaseEntity {
   lastName: string;
 
   @Column()
-  isActive: boolean;
+  isActive: boolean = true;
 }

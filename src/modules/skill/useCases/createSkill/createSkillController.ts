@@ -1,5 +1,5 @@
-import { CreateSkill } from "./createSkill";
-import { Request, Response } from "express";
+import { CreateSkill } from "./createSkill"
+import { Request, Response } from "express"
 //Controller
 
 export class CreateSkillController {
@@ -12,12 +12,11 @@ export class CreateSkillController {
   public async execute(req: Request, res: Response) {
     const { name, description, categoryId } = req.body;
 
-    Object.values({ name, description, categoryId })
-      .forEach((elm, index): any => {
+    Object.values({name, description, categoryId}).forEach((elm, index): any => {
       if (!elm) {
         return res.status(400).json({
           error: {
-            message: `${Object.keys({ name, description, categoryId })[index]} is required`
+            message: `${Object.keys({name, description, categoryId})[index]} is required`
           }
         })
       }
