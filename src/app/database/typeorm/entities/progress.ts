@@ -1,12 +1,12 @@
 import { Entity,  ManyToOne, BaseEntity } from "typeorm";
 import { Level } from "./level";
 import { Skill } from "./skill";
-import { User } from "./user";
+import { Student } from "./student";
 
 @Entity()
 export class Progress extends BaseEntity {
-  @ManyToOne(() => User, (user) => user.progresses, { primary: true })
-  user: User;
+  @ManyToOne(() => Student, (student) => student.progresses, { primary: true })
+  student: Student;
 
   @ManyToOne(() => Skill, (skill) => skill.progresses, { primary: true })
   skill: Skill;

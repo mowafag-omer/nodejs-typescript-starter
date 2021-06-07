@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from "typeorm";
-import { Progress } from "./progress";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 
 @Entity()
 export class User extends BaseEntity {
@@ -7,14 +6,14 @@ export class User extends BaseEntity {
   id: number;
 
   @Column()
-  firstName: string;
+  email: string;
 
   @Column()
-  lastName: string;
+  password: string;
 
   @Column()
-  isActive: boolean = true;
+  isAdmin: boolean;
 
-  @OneToMany(() => Progress, (Progress) => Progress.user)
-  progresses: Progress[];
+  @Column()
+  lastLoggin: Date;
 }
