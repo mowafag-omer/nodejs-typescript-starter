@@ -1,5 +1,6 @@
 import {
   Entity,
+  PrimaryGeneratedColumn,
   Column,
   OneToMany,
   BaseEntity,
@@ -8,6 +9,9 @@ import { Progress } from "./progress";
 
 @Entity()
 export class Level extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+  
   @Column()
   number: number;
 

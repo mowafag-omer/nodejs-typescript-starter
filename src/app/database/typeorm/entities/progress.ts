@@ -5,12 +5,12 @@ import { User } from "./user";
 
 @Entity()
 export class Progress extends BaseEntity {
-  @ManyToOne(() => User, (user) => user.progresses)
+  @ManyToOne(() => User, (user) => user.progresses, { primary: true })
   user: User;
 
-  @ManyToOne(() => Skill, (skill) => skill.progresses)
+  @ManyToOne(() => Skill, (skill) => skill.progresses, { primary: true })
   skill: Skill;
 
-  @ManyToOne(() => Level, (level) => level.progresses)
+  @ManyToOne(() => Level, (level) => level.progresses, { primary: true })
   level: Level;
 }
