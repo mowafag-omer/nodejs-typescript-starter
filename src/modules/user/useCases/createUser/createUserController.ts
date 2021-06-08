@@ -10,13 +10,13 @@ export class CreateUserController {
   }
 
   public async execute(req: Request, res: Response) {
-    const { firstName, lastName } = req.body;
+    const { email, password } = req.body;
 
-    Object.values({firstName, lastName}).forEach((elm, index): any => {
+    Object.values({ email, password }).forEach((elm, index): any => {
       if (!elm) {
         return res.status(400).json({
           error: {
-            message: `${Object.keys({firstName, lastName})[index]} is required`
+            message: `${Object.keys({ email, password })[index]} is required`
           }
         })
       }

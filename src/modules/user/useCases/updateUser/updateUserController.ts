@@ -10,20 +10,20 @@ export class UpdateUserController {
 
   public async execute(req: Request, res: Response) {
     const id: number = +req.params.id;
-    const { firstName, lastName } = req.body;
+    const { email, password } = req.body;
 
-    if (!firstName) {
+    if (!email) {
       return res.status(400).json({
         error: {
-          message: "firstName is required",
+          message: "email is required",
         },
       });
     }
 
-    if (!lastName) {
+    if (!password) {
       return res.status(400).json({
         error: {
-          message: "lastName is required",
+          message: "password is required",
         },
       });
     }

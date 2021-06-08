@@ -11,8 +11,8 @@ export class UserRepo {
     const UserEntity = this.entities.User;
 
     return await UserEntity.create({
-      firstName: userProps.firstName,
-      lastName: userProps.lastName,
+      email: userProps.email,
+      password: userProps.password,
     }).save();
   }
 
@@ -32,8 +32,8 @@ export class UserRepo {
     const UserEntity = this.entities.User;
     const userToUpdate = await UserEntity.findOne({id});
 
-    userToUpdate.firstName= userProps.firstName
-    userToUpdate.lastName= userProps.lastName
+    userToUpdate.email= userProps.email
+    userToUpdate.password= userProps.password
     
     return await UserEntity.save(userToUpdate);
   }
