@@ -14,7 +14,7 @@ export class SkillRepo {
     return await SkillEntity.create({
       name: skillProps.name,
       description: skillProps.description,
-      categoryId: +skillProps.categoryId
+      category: +skillProps.categoryId
     }).save();
   }  
 

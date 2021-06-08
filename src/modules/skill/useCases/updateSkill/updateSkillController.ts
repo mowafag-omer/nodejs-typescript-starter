@@ -30,7 +30,7 @@ export class UpdateSkillController {
       return res.status(200).json(skill);
     } 
     catch (error) {
-      return res.status(400).json("Something went wrong, may be this skill doesn't exist.")
+      return res.status(400).json("Something went wrong")
     }
   }
 }

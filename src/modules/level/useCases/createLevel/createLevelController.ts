@@ -1,22 +1,21 @@
-import { CreateSkill } from "./createSkill"
+import { CreateLevel } from "./createLevel"
 import { Request, Response } from "express"
-//Controller
 
-export class CreateSkillController {
-  private useCase: CreateSkill;
+export class CreateLevelController {
+  private useCase: CreateLevel;
 
-  constructor(createSkill: CreateSkill) {
-    this.useCase = createSkill;
+  constructor(createLevel: CreateLevel) {
+    this.useCase = createLevel;
   }
 
   public async execute(req: Request, res: Response) {
-    const { name, description, categoryId } = req.body;
+    const {number, name} = req.body;
 
-    Object.values({name, description, categoryId}).forEach((elm, index): any => {
+    Object.values({number, name}).forEach((elm, index): any => {
       if (!elm) {
         return res.status(400).json({
           error: {
-            message: `${Object.keys({name, description, categoryId})[index]} is required`
+            message: `${Object.keys({number, name})[index]} is required hina`
           }
         })
       }
@@ -28,6 +27,7 @@ export class CreateSkillController {
       return res.status(200).json(skill);
 
     } catch (error) {
+      console.log(error);
       return res.status(400).json("something went wrong !")
     }
   }

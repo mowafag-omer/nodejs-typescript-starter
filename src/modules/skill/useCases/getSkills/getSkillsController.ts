@@ -15,7 +15,7 @@ export class GetSkillsController {
       return res.status(200).json(skills);
     } 
     catch (error) {
-      return res.status(400).json(error.message);
+      return res.status(400).json("something went wrong !");
     }
   }
 }
