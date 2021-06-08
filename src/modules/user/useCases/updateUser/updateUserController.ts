@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
+import { validate } from 'class-validator'
 import { UpdateUser } from "./updateUser";
+import { RequestCreateUserDto } from "../createUser/createUserDto";
 
 export class UpdateUserController {
   private useCase: UpdateUser;
@@ -29,11 +31,13 @@ export class UpdateUserController {
     }
 
     try {
+      const requestUserDto = new RequestCreateUserDto({email, password})
+      const errorsDto = await validate(requestUserDto)
       const user = await this.useCase.execute(id, req.body);
   
       return res.status(200).json(user);  
     } 
-    catch (error) {
+    catch (error) { 
       return res.status(400).json("something went wrong !")
     }
   }
