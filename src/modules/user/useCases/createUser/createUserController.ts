@@ -1,7 +1,7 @@
 import { CreateUser } from "./createUser"
 import { Request, Response } from "express"
-//Controller
-
+//DTO
+import { RequestCreateUserDto } from './createUserDto'
 export class CreateUserController {
   private useCase: CreateUser;
 
@@ -10,24 +10,22 @@ export class CreateUserController {
   }
 
   public async execute(req: Request, res: Response) {
-    const { email, password } = req.body;
+    
+    const requestUserDto = new RequestCreateUserDto(req.body)
+    const dtoErrors = await requestUserDto.isValid(requestUserDto)
 
-    Object.values({ email, password }).forEach((elm, index): any => {
-      if (!elm) {
-        return res.status(400).json({
-          error: {
-            message: `${Object.keys({ email, password })[index]} is required`
-          }
-        })
-      }
-    })
+    !!dtoErrors && res.status(400).json(dtoErrors)
 
     try {
-      const skill = await this.useCase.execute(req.body);
+      const result = await this.useCase.execute(req.body);
 
-      return res.status(200).json(skill);
+      if (!result.success) {
+        return res.status(400).json(result.message)
+      }
+
+      return res.status(201).json();
     } 
-    catch (error) {
+    catch (err) {
       return res.status(400).json("something went wrong !")
     }
   }

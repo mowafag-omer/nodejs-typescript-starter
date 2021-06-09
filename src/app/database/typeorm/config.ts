@@ -8,7 +8,7 @@ const databaseCredentials = {
     username: DB_USERNAME,
     password: DB_PASSWORD,
     logging: !__prod__,
-    synchronize: true,
+    synchronize: false,
     entities: [] as any[],
   },
   production: {

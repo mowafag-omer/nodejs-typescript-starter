@@ -8,12 +8,31 @@ export class UserRepo {
   }
 
   public async create(userProps: userProps) {
+    const UserEntity = this.entities.User
+
+    const exists = await this.exists(userProps.email);
+
+    if (!exists) {
+      await UserEntity.create(userProps).save()
+    }
+
+    return
+  }
+
+  public async exists(email: string): Promise<boolean> {
     const UserEntity = this.entities.User;
 
-    return await UserEntity.create({
-      email: userProps.email,
-      password: userProps.password,
-    }).save();
+    const result = await UserEntity.findOne({ email: email })
+
+    return !!result
+  }
+
+  public async getUserByEmail(email: string): Promise<any> {
+    const UserEntity = this.entities.User;
+
+    const result = await UserEntity.findOne({ email: email })
+    
+    return result
   }
 
   public async getAll() {

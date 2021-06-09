@@ -1,11 +1,12 @@
 import { MinLength, MaxLength, IsString, IsDefined, IsEmail } from 'class-validator'
+import { AbstractDto } from '../../../../common/abstractDto'
 
 interface IRequestCreateUserDto {
   email: string;
   password: string;
 }
 
-export class RequestCreateUserDto implements IRequestCreateUserDto {
+export class RequestCreateUserDto extends AbstractDto implements IRequestCreateUserDto {
 
   @IsEmail()
   @IsDefined({ message: 'Email is required !'})
@@ -18,6 +19,8 @@ export class RequestCreateUserDto implements IRequestCreateUserDto {
   public password: string
 
   constructor(props: IRequestCreateUserDto) {
+    super()
+    
     this.email = props.email
     this.password = props.password
   }
