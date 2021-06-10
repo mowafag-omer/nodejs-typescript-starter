@@ -35,7 +35,6 @@ export class Login {
       }
         
       const token = jwt.sign({id: user.id }, PRIVATE_KEY)
-      console.log(token);
       
       return {success: true, token}
 

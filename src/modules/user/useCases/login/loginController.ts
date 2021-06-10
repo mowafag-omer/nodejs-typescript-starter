@@ -23,7 +23,8 @@ export class LoginController {
         return res.status(400).json(result.message)
       }
       
-      return res.status(200).json(result);
+      return res.cookie('token', result.token,{ maxAge: 24 * 60 * 60 })
+        .status(200).json() 
     } 
     catch (error) {
       return res.status(400).json("something went wrong !")
