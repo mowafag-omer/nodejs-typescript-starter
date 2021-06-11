@@ -11,22 +11,28 @@ export class LoginController {
 
   public async execute(req: Request, res: Response) {
 
-    const requestUserDto = new RequestLoginDto(req.body)
-    const dtoErrors = await requestUserDto.isValid(requestUserDto)
-
-    !!dtoErrors && res.status(400).json(dtoErrors)
-
+    
     try {
+      const requestUserDto = new RequestLoginDto(req.body)
+      const dtoErrors = await requestUserDto.isValid(requestUserDto)
+  
+      !!dtoErrors && res.status(400).json(dtoErrors)
+
       const result = await this.useCase.execute(req.body)
 
-      if (!result.success) {
-        console.log(result);
-        
-        return res.status(400).json(result)
+      if (!result.success) { 
+        return res.status(400).json(result.message)
+      }
+
+      let data;
+      if (result.payload) {
+        const { id, password, ...userWithoutPasswordAndId } = result.payload.user
+        console.log('user controller without id and password', userWithoutPasswordAndId);
+        data = userWithoutPasswordAndId
       }
       
-      return res.cookie('token', result.token,{ maxAge: 24 * 60 * 60 })
-        .status(200).json() 
+      return res.cookie('token', result.payload?.token,{ maxAge: 24 * 60 * 60 })
+        .status(200).json(data) 
     } 
     catch (error) {
       return res.status(401).json("something went wrong !")

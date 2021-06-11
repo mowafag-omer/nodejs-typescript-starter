@@ -36,7 +36,13 @@ export class Login {
         
       const token = jwt.sign({id: user.id }, PRIVATE_KEY)
       
-      return {success: true, token}
+      return {
+        success: true,
+        payload: {
+          user,
+          token
+        }
+      }
 
     } catch (error) {
       return {
