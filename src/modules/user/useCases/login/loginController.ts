@@ -20,14 +20,16 @@ export class LoginController {
       const result = await this.useCase.execute(req.body)
 
       if (!result.success) {
-        return res.status(400).json(result.message)
+        console.log(result);
+        
+        return res.status(400).json(result)
       }
       
       return res.cookie('token', result.token,{ maxAge: 24 * 60 * 60 })
         .status(200).json() 
     } 
     catch (error) {
-      return res.status(400).json("something went wrong !")
+      return res.status(401).json("something went wrong !")
     }
   }
 }

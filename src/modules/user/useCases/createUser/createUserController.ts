@@ -20,7 +20,7 @@ export class CreateUserController {
       const result = await this.useCase.execute(req.body);
 
       if (!result.success) {
-        return res.status(400).json(result.message)
+        return res.status(400).json(result)
       }
 
       return res.status(201).json();
