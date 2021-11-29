@@ -13,14 +13,14 @@ export const createServer = async (): Promise<express.Application> => {
     origin: "http://localhost:1234",
     credentials: true
   }))
-  
+
   app.use(express.json())
   app.use(express.urlencoded({ extended: true }))
 
   app.use(`${API_BASE_URL}`, v1Router)
 
   app.listen(4000, () => {
-      console.log(`[App]: Listening on PORT ${4000}`)
+    console.log(`[App]: Listening on PORT ${4000}`)
   })
 
   return app
